@@ -6,11 +6,24 @@ namespace NSJ2
     [HarmonyPatch(typeof(QingGongGraphMgr))]
     internal class QingGongGraphMgr_Patches
     {
+
+        [HarmonyPatch(nameof(QingGongGraphMgr.IsInCoolDown))]
+        [HarmonyPostfix]
+        public static void Cooldown_Patch(QingGongGraphMgr __instance, ref bool __result)
+        {
+            NpcEntity entity = Helpers.GetPrivateField<NpcEntity>(__instance, "m_UnitEntity");
+            if (entity == null) return;
+            if (!WorldManager.Instance.IsPlayer(entity.guid)) return;
+            __result = false;
+        }
+
         [HarmonyPatch(nameof(QingGongGraphMgr.UpGradeNode))]
         [HarmonyPrefix]
-        public static void Upgrade_Patch(QingGongGraphMgr __instance, int nodeGroup, bool bCheck, ref bool bForceUpdate, bool bForceFromScript, bool showTip)
+        public static void Upgrade_Patch(QingGongGraphMgr __instance, int nodeGroup, bool bCheck, ref bool bForceUpdate, ref bool bForceFromScript, bool showTip)
         {
             bForceUpdate = true; //force it to always upgrade
+            bForceFromScript = true;
+            /*
             int num = -1;
             int num2 = -1;
             if (__instance.m_DirActiveNode.ContainsKey(nodeGroup))
@@ -38,6 +51,7 @@ namespace NSJ2
                 return;
             }
             WorldManager.Instance.m_PlayerEntity.m_AttriManager.ModAttriField(AttriType.GanWu, infoById3.needGanWu, false, -1, -1, true, true, false, true, false);
+            */
             Main.Log.LogInfo("Qinggong Upgrade Patch Triggered!");
         }
     }

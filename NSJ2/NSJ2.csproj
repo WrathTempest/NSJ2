@@ -59,13 +59,31 @@
       <HintPath>Libs\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>Libs\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>Libs\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>Libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Libs\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attr.cs" />
+    <Compile Include="ModUI.cs" />
+    <Compile Include="UnitController_Patches.cs" />
+    <Compile Include="SpellManager_Patches.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="AttriManager_Patches.cs" />
     <Compile Include="QingGongGraphMgr_Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

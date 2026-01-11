@@ -27,8 +27,27 @@ namespace NSJ2
         public static void Flag_Patch(UnitController __instance, ref bool __result, int flag)
         {
             if (!WorldManager.Instance.IsPlayer(__instance.guid)) return;
-            if (flag !=1) return;
-            __result = false;
+            switch (flag)
+            {
+                case 1:
+                    __result = false;
+                    break;
+                case 5:
+                    if (!Main.SuperArmor) return;
+                    __result = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        [HarmonyPatch(nameof(UnitController.SetHurtRecover))]
+        [HarmonyPrefix]
+        public static bool HurtRecover_Patch(UnitController __instance)
+        {
+            if (!Main.CanCastSkillWhileHurt || !WorldManager.Instance.IsPlayer(__instance.guid)) return true;
+            return false;
+
         }
     }
 }

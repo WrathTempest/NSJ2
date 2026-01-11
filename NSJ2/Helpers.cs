@@ -129,7 +129,7 @@ namespace NSJ2
             for (int i = 34; i <= 41; i++)
             {
                 AttriType attriType = (AttriType)(sbyte)i;
-                __instance.SetAttriField(attriType, 300, -1, -1, false);
+                __instance.SetAttriField(attriType, 1000, -1, -1, false);
                 Main.Log.LogInfo($"Successfully set attribute: {attriType}, with ID: {i}");
             }
 
@@ -149,9 +149,12 @@ namespace NSJ2
 
             for (int i = 5; i <= 11; i++)
             {
-                AttriType attriType = (AttriType)(sbyte)i;
-                __instance.SetAttriField(attriType, 20, -1, -1, false);
-                Main.Log.LogInfo($"Successfully set attribute: {attriType}, with ID: {i}");
+                if (__instance.GetAttriResult((AttriType)i, true) < 20);
+                {
+                    AttriType attriType = (AttriType)(sbyte)i;
+                    __instance.SetAttriField(attriType, 20, -1, -1, false);
+                    Main.Log.LogInfo($"Successfully set attribute: {attriType}, with ID: {i}");
+                }          
             }
 
             __instance.SetAttriField(Attr.Comprehension, 250, -1, -1, false);

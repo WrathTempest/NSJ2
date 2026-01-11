@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementView_Patches.cs" />
     <Compile Include="MiJiGraphMgr_Patches.cs" />
     <Compile Include="GraphNodeView_Patches.cs" />
     <Compile Include="MiJiSpellPassiveView_Patches.cs" />

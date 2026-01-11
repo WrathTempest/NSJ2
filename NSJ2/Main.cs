@@ -20,11 +20,14 @@ namespace NSJ2
         private static readonly Harmony Harmony = new Harmony(MyGUID);
         public static ManualLogSource Log;
 
-        public static bool EnableModAttri = true;
+        public static bool EnableModAttri = false;
         public static bool EnableSetMaxStats = false;
         public static bool EnableReduceItem = true;
         public static bool EnableGainItem = true;
         public static bool RemoveSkillRestrictions = true;
+        public static bool CanCastSkillWhileHurt = true;
+        public static bool SuperArmor = false;
+        public static bool BypassAchievements = false;
 
         private bool showUI = false;
         private Rect windowRect = new Rect(20, 20, 10, 10);
@@ -59,6 +62,9 @@ namespace NSJ2
             EnableReduceItem = ModUI.DrawToggle("Reduce Item Costs/Usage to 0", EnableReduceItem, "Set Item Usage to Zero", Log);
             EnableGainItem = ModUI.DrawToggle("Multiply Items Gained by 20", EnableGainItem, "Gain Item Multiplier", Log);
             RemoveSkillRestrictions = ModUI.DrawToggle("Bypass Skill Learning Requirements", RemoveSkillRestrictions, "Remove Skill Restrictions", Log);
+            CanCastSkillWhileHurt = ModUI.DrawToggle("Can cast skills under hitstun", CanCastSkillWhileHurt, "Ignore Hit Stun", Log);
+            SuperArmor = ModUI.DrawToggle("Toggle Super Armor", SuperArmor, "Super Armor", Log);
+            BypassAchievements = ModUI.DrawToggle("Ignore Achievement Conditions", BypassAchievements, "Bypass Achievements", Log);
 
             GUILayout.Space(10);
             GUILayout.Label("Press F1 to close/open this window", GUILayout.ExpandWidth(true));

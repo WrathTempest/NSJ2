@@ -77,8 +77,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MiJiGraphMgr_Patches.cs" />
+    <Compile Include="GraphNodeView_Patches.cs" />
+    <Compile Include="MiJiSpellPassiveView_Patches.cs" />
     <Compile Include="Attr.cs" />
     <Compile Include="ModUI.cs" />
+    <Compile Include="ItemStorage_Patches.cs" />
+    <Compile Include="AnswerViewNew_Patches.cs" />
+    <Compile Include="SpellEditView_Patches.cs" />
     <Compile Include="UnitController_Patches.cs" />
     <Compile Include="SpellManager_Patches.cs" />
     <Compile Include="Helpers.cs" />

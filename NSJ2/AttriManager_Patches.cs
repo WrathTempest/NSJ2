@@ -19,9 +19,13 @@ namespace NSJ2
             if (!WorldManager.Instance.IsPlayer(entity.guid)) return;
             if (attritype == AttriType.Level || attritype == AttriType.DaoDe) return;
             int mult = 1;
+            if (Main.EnableSetMaxStats)
+            {
+                Helpers.SetMaxValues(__instance);
+            }
             if ((attritype == AttriType.Money || attritype == AttriType.XiuWei || attritype == AttriType.GanWu))
             {
-                mult = 2;
+                mult = 1;
                 if (change < 0)
                 {
                     change /= mult;
@@ -31,22 +35,23 @@ namespace NSJ2
                     change *= mult;
                 }
                 Main.Log.LogInfo($"Successfully modified attribute change of type: {attritype}");
-            }          
-            if (Main.EnableSetMaxStats)
-            {
-                Helpers.SetMaxValues(__instance);
-            }
+                return;
+            }                    
             //Combat Stats
             if ((sbyte)attritype >= 34 || (sbyte)attritype <= 41)
             {
                 mult = 4;
                 change *= mult;
+                Main.Log.LogInfo($"Successfully modified attribute change of type: {attritype}");
+                return;
             }
             //Attributes
             if ((sbyte)attritype >= 5 || (sbyte)attritype <= 11)
             {
                 mult = 2;
                 change *= mult;
+                Main.Log.LogInfo($"Successfully modified attribute change of type: {attritype}");
+                return;
             }
             return;
         }

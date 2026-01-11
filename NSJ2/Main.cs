@@ -22,6 +22,9 @@ namespace NSJ2
 
         public static bool EnableModAttri = true;
         public static bool EnableSetMaxStats = false;
+        public static bool EnableReduceItem = true;
+        public static bool EnableGainItem = true;
+        public static bool RemoveSkillRestrictions = true;
 
         private bool showUI = false;
         private Rect windowRect = new Rect(20, 20, 10, 10);
@@ -53,6 +56,9 @@ namespace NSJ2
 
             EnableModAttri = ModUI.DrawToggle("Enable ModAttri Patch (Disable whenever starting a new game)", EnableModAttri, "Mod Attri", Log);
             EnableSetMaxStats = ModUI.DrawToggle("Enable Set Max Stats (requires ModAttri)", EnableSetMaxStats, "Set Max Stats", Log);
+            EnableReduceItem = ModUI.DrawToggle("Reduce Item Costs/Usage to 0", EnableReduceItem, "Set Item Usage to Zero", Log);
+            EnableGainItem = ModUI.DrawToggle("Multiply Items Gained by 20", EnableGainItem, "Gain Item Multiplier", Log);
+            RemoveSkillRestrictions = ModUI.DrawToggle("Bypass Skill Learning Requirements", RemoveSkillRestrictions, "Remove Skill Restrictions", Log);
 
             GUILayout.Space(10);
             GUILayout.Label("Press F1 to close/open this window", GUILayout.ExpandWidth(true));

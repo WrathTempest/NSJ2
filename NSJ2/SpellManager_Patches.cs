@@ -15,5 +15,17 @@ namespace NSJ2
             if (!WorldManager.Instance.IsPlayer(entity.guid)) return;
             __result = 0f;
         }
+
+        /*
+        [HarmonyPatch(nameof(SpellManager.IsLearntSpell))]
+        [HarmonyPostfix]
+        public static void LearntSpell_Patch(SpellManager __instance, ref bool __result)
+        {
+            NpcEntity entity = Helpers.GetPrivateField<NpcEntity>(__instance, "m_UnitEntity");
+            if (entity == null) return;
+            if (!WorldManager.Instance.IsPlayer(entity.guid)) return;
+            __result = true;
+        }
+        */
     }
 }

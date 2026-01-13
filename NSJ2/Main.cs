@@ -24,10 +24,12 @@ namespace NSJ2
         public static bool EnableSetMaxStats = false;
         public static bool EnableReduceItem = true;
         public static bool EnableGainItem = true;
-        public static bool RemoveSkillRestrictions = true;
+        public static bool RemoveSkillRestrictions = false;
         public static bool CanCastSkillWhileHurt = true;
         public static bool SuperArmor = false;
         public static bool BypassAchievements = false;
+        public static bool SpawnItems = true;
+        public static bool SpawnMartialArt = false;
 
         private bool showUI = false;
         private Rect windowRect = new Rect(20, 20, 10, 10);
@@ -59,12 +61,14 @@ namespace NSJ2
 
             EnableModAttri = ModUI.DrawToggle("Enable ModAttri Patch (Disable whenever starting a new game)", EnableModAttri, "Mod Attri", Log);
             EnableSetMaxStats = ModUI.DrawToggle("Enable Set Max Stats (requires ModAttri)", EnableSetMaxStats, "Set Max Stats", Log);
+            SpawnMartialArt = ModUI.DrawToggle("Spawn All Martial Art Scrolls (requires ModAttri)", SpawnMartialArt, "Spawn Martial Art Scrolls", Log);
             EnableReduceItem = ModUI.DrawToggle("Reduce Item Costs/Usage to 0", EnableReduceItem, "Set Item Usage to Zero", Log);
             EnableGainItem = ModUI.DrawToggle("Multiply Items Gained by 20", EnableGainItem, "Gain Item Multiplier", Log);
             RemoveSkillRestrictions = ModUI.DrawToggle("Bypass Skill Learning Requirements", RemoveSkillRestrictions, "Remove Skill Restrictions", Log);
             CanCastSkillWhileHurt = ModUI.DrawToggle("Can cast skills under hitstun", CanCastSkillWhileHurt, "Ignore Hit Stun", Log);
             SuperArmor = ModUI.DrawToggle("Toggle Super Armor", SuperArmor, "Super Armor", Log);
             BypassAchievements = ModUI.DrawToggle("Ignore Achievement Conditions", BypassAchievements, "Bypass Achievements", Log);
+            SpawnItems = ModUI.DrawToggle("Spawn Items Requirements", SpawnItems, "Spawn Items", Log);          
 
             GUILayout.Space(10);
             GUILayout.Label("Press F1 to close/open this window", GUILayout.ExpandWidth(true));

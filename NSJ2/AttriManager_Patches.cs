@@ -27,6 +27,10 @@ namespace NSJ2
             {
                 __instance.SetAttriField(Attr.Beauty, 1000);
             }
+            if (Main.SpawnMartialArt)
+            {
+                Helpers.AddAllMartialScrolls(entity.m_itemStorage);
+            }         
             if ((attritype == AttriType.Money || attritype == AttriType.XiuWei || attritype == AttriType.GanWu))
             {
                 mult = 1;

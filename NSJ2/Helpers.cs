@@ -117,6 +117,26 @@ namespace NSJ2
             Main.Log.LogInfo($"{message} Called by: {caller}");
         }
 
+        public static void AddAllItems(ItemStorage __instance)
+        {
+            foreach(var kv in ItemPrototype.mTemplateList)
+            {
+                __instance.CreateAndAddByItemId(ItemPrototype.mTemplateList[kv.Key].itemId, 1);
+            }
+        }
+
+        public static void AddAllMartialScrolls(ItemStorage __instance)
+        {
+            foreach (var kv in ItemPrototype.mTemplateList)
+            {
+                ItemPrototype item = kv.Value;
+                if (item.type == 4 && item.subType == 15)
+                {
+                    ItemStorage_Original.CreateItem(__instance, item.itemId, 1);
+                }            
+            }
+        }
+
         public static void SetMaxValues(AttriManager __instance)
         {
             for (int i = 12; i <= 19; i++)
@@ -147,9 +167,9 @@ namespace NSJ2
                 Main.Log.LogInfo($"Successfully set attribute: {attriType}, with ID: {i}");
             }
 
-            for (int i = 5; i <= 11; i++)
+            for (int i = 4; i <= 11; i++)
             {
-                if (__instance.GetAttriResult((AttriType)i, true) < 20);
+                //if (__instance.GetAttriResult((AttriType)i, true) < 20)
                 {
                     AttriType attriType = (AttriType)(sbyte)i;
                     __instance.SetAttriField(attriType, 20, -1, -1, false);
@@ -157,19 +177,21 @@ namespace NSJ2
                 }          
             }
 
-            __instance.SetAttriField(Attr.Comprehension, 250, -1, -1, false);
-            __instance.SetAttriField(Attr.Combat, 1000, -1, -1, false);
-            __instance.SetAttriField(Attr.PoisonTechnique, 1000, -1, -1, false);
+            if (__instance.GetAttriResult(Attr.Comprehension, true) < 250)
+            {
+                __instance.SetAttriField(Attr.Comprehension, 250, -1, -1, false);
+            }
+            
         }
 
         public static readonly Dictionary<string, AttriType> AttrNameToType = new Dictionary<string, AttriType>
         {
             // Core
             { "Max HP", AttriType.HpMax },              // ID 1 -> 0
-            { "True Qi", AttriType.MpMax },                // ID 2 -> 1
-            { "Vitality", AttriType.YuanQi },              // ID 5 -> 4
+            { "True Qi", AttriType.MpMax },                // ID 2 -> 1     
 
             // Base stats
+            { "Vitality", AttriType.YuanQi },              // ID 5 -> 4
             { "Potential", AttriType.GenGu },              // ID 6 -> 5
             { "Strength", AttriType.JinGu },               // ID 7 -> 6
             { "Inner Power", AttriType.NeiXi },             // ID 8 -> 7

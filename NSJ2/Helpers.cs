@@ -10,6 +10,9 @@ namespace NSJ2
 {
     public class Helpers
     {
+        [ThreadStatic]
+        public static bool AddingItems = false;
+
         public static T GetPrivateField<T>(object instance, string fieldName)
         {
             if (instance == null) throw new ArgumentNullException(nameof(instance));
@@ -125,16 +128,66 @@ namespace NSJ2
             }
         }
 
+        public static void LearnAllMartialArts(SpellManager __instance)
+        {
+            
+            foreach (var kv in SpellPrototype.mTemplateList)
+            {
+                if (kv.Value.quality >= 4)
+                {
+                    long spellId = kv.Key;
+                    Main.Log.LogInfo($"Learning Spell: {SpellPrototype.GetNameStr(spellId)} with ID: {spellId} with Spell Type: {kv.Value.spellType}");                  
+    
+                    __instance.LearnSpell(spellId);
+                    CreateMijiPage(spellId);
+                }
+                
+            }
+            /*
+            __instance.LearnSpell(20454102);
+            CreateMijiPage(20454102);
+            __instance.LearnSpell(20454101);
+            CreateMijiPage(20454101);
+            __instance.LearnSpell(20454003);
+            CreateMijiPage(20454003);
+            __instance.LearnSpell(20454002);
+            CreateMijiPage(20454002);
+            */
+
+        }
+
+        public static void CreateMijiPage(long spellId)
+        {
+            MiJiPage.virtualMiJiPageId += 1L;
+            MiJiPage.virtualXinfaStealPage++;
+            StealMiJiPage stealMiJiPage = new StealMiJiPage();
+            long mijiPageId = MiJiPage.virtualXinfaStealPage;
+            stealMiJiPage.mijiPageId = mijiPageId;
+            stealMiJiPage.pageId = MiJiPage.virtualSpellPassivePage;
+            stealMiJiPage.spellId = spellId;
+            WorldManager.Instance.m_PlayerEntity.m_MiJiMgr.m_graphMgr.stealMiJiPages.Add(stealMiJiPage);
+            //MiJiPage.AddStealMiJiPage(stealMiJiPage);
+            MiJiPage miJiPage = new MiJiPage();
+            miJiPage.id = stealMiJiPage.mijiPageId;
+            miJiPage.groupId = 998L;
+            miJiPage.pageId = stealMiJiPage.pageId;
+            miJiPage.type = 6;
+            miJiPage.misvalue = stealMiJiPage.spellId;
+            MiJiPage.mTemplateList.Add(miJiPage.id, miJiPage);
+        }
+
         public static void AddAllMartialScrolls(ItemStorage __instance)
         {
             foreach (var kv in ItemPrototype.mTemplateList)
             {
                 ItemPrototype item = kv.Value;
-                if (item.type == 4 && item.subType == 15)
+                if (item.type == 4 && (item.subType == 20 || item.subType == 15))
                 {
+                    AddingItems = true;
                     ItemStorage_Original.CreateItem(__instance, item.itemId, 1);
                 }            
             }
+            AddingItems = false;
         }
 
         public static void SetMaxValues(AttriManager __instance)

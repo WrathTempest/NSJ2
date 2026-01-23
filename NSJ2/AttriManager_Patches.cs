@@ -30,7 +30,11 @@ namespace NSJ2
             if (Main.SpawnMartialArt)
             {
                 Helpers.AddAllMartialScrolls(entity.m_itemStorage);
-            }         
+            }
+            if (Main.LearnMartialArt)
+            {
+                Helpers.LearnAllMartialArts(entity.m_SpellManager);
+            }
             if ((attritype == AttriType.Money || attritype == AttriType.XiuWei || attritype == AttriType.GanWu))
             {
                 mult = 1;

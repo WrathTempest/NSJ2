@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementView_Patches.cs" />
+    <Compile Include="InteractSlot_Patches.cs" />
     <Compile Include="ItemStorage_Original.cs" />
     <Compile Include="JingJiePartView_Patches.cs" />
     <Compile Include="JingJieGraphMgr_Patches.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="ItemStorage_Patches.cs" />
     <Compile Include="AnswerViewNew_Patches.cs" />
     <Compile Include="SpellEditView_Patches.cs" />
+    <Compile Include="InteractTip_Patches.cs" />
     <Compile Include="UnitController_Patches.cs" />
     <Compile Include="SpellManager_Patches.cs" />
     <Compile Include="Helpers.cs" />

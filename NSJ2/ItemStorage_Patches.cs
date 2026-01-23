@@ -56,6 +56,7 @@ namespace NSJ2
         public static void ItemCount_Patch(ItemStorage __instance, ref int __result, long itemid)
         {
             if (!Main.SpawnItems) return;
+            if (Helpers.AddingItems) return;
             if (__instance.m_NpcEntity == null) return;
             if (!WorldManager.Instance.IsPlayer(__instance.m_NpcEntity.guid)) return;
             ItemPrototype itemPrototype = ItemPrototype.GetItemPrototype(itemid);
@@ -71,7 +72,6 @@ namespace NSJ2
             {
                 CurrentItem = 0;
             }
-
         }
 
 

@@ -18,6 +18,7 @@ namespace NSJ2
         [HarmonyPostfix]
         public static void CastDelay_Patch(UnitController __instance, ref bool __result)
         {
+            if (!Main.RemoveCastDelay) return;
             if (!WorldManager.Instance.IsPlayer(__instance.guid)) return;
             __result = true;
         }
